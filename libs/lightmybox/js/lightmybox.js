@@ -287,10 +287,9 @@
 				var ratio = image.width / image.height;
 				var width = $(window).width();
 				var height = width / ratio;
-				console.log(height);
 				var diff = $(window).height() - height;
 				if (diff > 0) {
-					img_element.css('margin-top', (imgHeight / 2) + 'px');
+					img_element.css('margin-top', (diff / 2) + 'px');
 				}
 			}
 		};

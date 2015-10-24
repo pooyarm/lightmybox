@@ -59,6 +59,10 @@ $(document).ready(function(){
 		bgOpacity: 1,
 		frame: false
 	});
+
+	$(".lightmybox8").lightmybox({
+		height: 'fullscreen'
+	});
 });
 
 // This function loads images
