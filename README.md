@@ -1,2 +1,3 @@
 # lightmybox
-http://pooyarm.github.io/LightMyBox/
+demo and documentation:
+http://pooyarm.github.io/lightmybox/
