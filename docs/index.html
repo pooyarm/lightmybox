@@ -18,12 +18,12 @@
     <div class="wrapper">
       <header>
         <h1 id='project-title'><span style='display:inline-block;width:108px;'>LightMyBox</span></h1>
-        <p>Another lightbox, but PERFECT!</p>
+        <p>Another lightbox, but DIFFERENT!</p>
 
 
         <ul>
-          <li id='download-link'><a href="http://codecanyon.net/item/focustip/12787895">Buy from <strong>CodeCanyon</strong></a></li>
-          <li id='issues-link'><a href="http://codecanyon.net/item/focustip/12787895/support">Any bug? <strong>Tell me</strong></a></li>
+          <li id='download-link'><a href="#">Buy from <strong>CodeCanyon</strong></a></li>
+          <li id='issues-link'><a href="#">Any bug? <strong>Tell me</strong></a></li>
           <li id='website-link'><a href="https://1pooya.com">Find me <strong>Website</strong></a></li>
         </ul>
       </header>
@@ -119,7 +119,41 @@
     <td>true</td>
     <td>To disable navigation with keyboard, set it false.</td>
   </tr>
+  <tr>
+    <td>callbacks</td>
+    <td>object of functions</td>
+    <td></td>
+    <td>You can define custom functions for custom <a href='#callbacks'>callbacks</a></td>
+  </tr>
 </table>
+
+<h2><a id="callbacks" class="anchor" href="#callbacks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Callbacks</h2>
+<p>Here is callbacks for your customization:</p>
+<ul>
+  <li><b>beforeShow</b> it fires after user clicks on item and before starting animation starts.</li>
+  <li><b>afterShow</b> it fires just right after starting animation ends.</li>
+  <li><b>beforeNext</b> when user requests for next item, this function fires, just before animation starts.</li>
+  <li><b>afterNext</b> this function fires when next item shown and right after animation.</li>
+  <li><b>beforePrevious</b> when user requests for previous item, this function fires, just before animation starts.</li>
+  <li><b>afterPrevious</b> this function fires when previous item shown and right after animation.</li>
+  <li><b>beforeClose</b> it fires after user requests to close lightbox and before close animation starts.</li>
+  <li><b>afterShow</b> it fires just right after close animation ends.</li>
+</ul>
+<p>For example:</p>
+<pre><code>$(document).ready(function(){
+  $('.lightmybox').lightmybox({
+    callbacks: {
+      beforeShow:   function() { console.log('beforeShow'); },
+      afterShow:  function() { console.log('afterShow'); },
+      beforeNext:   function() { console.log('beforeNext'); },
+      afterNext:  function() { console.log('afterNext'); },
+      beforePrevious: function() { console.log('beforePrevious'); },
+      afterPrevious:  function() { console.log('afterPrevious'); },
+      beforeClose:  function() { console.log('beforeClose'); },
+      afterClose:   function() { console.log('afterClose'); },
+    }
+  });
+});</code></pre>
 
 <h2><a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h2>
 
@@ -180,7 +214,7 @@
 
 <h2><a id="support" class="anchor" href="#support" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support</h2>
 
-<p>Having trouble with Focustip? need support? I'm here <a href="http://codecanyon.net/item/focustip/12787895/support" target='_blank'>http://codecanyon.net/item/focustip/12787895/support</a>.</p>
+<p>Having trouble with LightMyBox? need support? I'm here <a href="#" target='_blank'>#</a>.</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/pooyarm" target='_blank'>pooyarm</a></p>
@@ -190,7 +224,6 @@
     <script src="javascripts/scale.fix.js"></script>
     <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
     <script src="../libs/lightmybox/js/lightmybox.js"></script>
-    <script src="javascripts/focustip.js"></script>
 
     <script type="text/javascript">
       $(document).ready(function(){
