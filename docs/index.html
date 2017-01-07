@@ -1,0 +1,217 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>LightMyBox by pooyarm</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <link rel="stylesheet" href="../libs/lightmybox/css/lightmybox.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 id='project-title'><span style='display:inline-block;width:108px;'>LightMyBox</span></h1>
+        <p>Another lightbox, but PERFECT!</p>
+
+
+        <ul>
+          <li id='download-link'><a href="http://codecanyon.net/item/focustip/12787895">Buy from <strong>CodeCanyon</strong></a></li>
+          <li id='issues-link'><a href="http://codecanyon.net/item/focustip/12787895/support">Any bug? <strong>Tell me</strong></a></li>
+          <li id='website-link'><a href="https://1pooya.com">Find me <strong>Website</strong></a></li>
+        </ul>
+      </header>
+      <section>
+
+<h2><a id="how" class="anchor" href="#how" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use</h2>
+
+<p>Very easy. Buy LighyMyBox then include it in your page. Code your html as normal, create links to images then call LightMyBox, no more...</p>
+
+<pre><code>$(document).ready(function(){
+  $('.lightmybox').lightmybox();
+});</code></pre>
+
+<p>There are plenty of <a href='#options'>options</a> you can play with.</p>
+
+<h2><a id="options" class="anchor" href="#options" aria-hidden="true"><span class="octicon octicon-link"></span></a>Options</h2>
+
+<table cellspacing='0' cellpadding='0'>
+  <tr>
+    <th style='width: 15%;'>Option</th>
+    <th style='width: 15%;'>Values</th>
+    <th style='width: 15%;'>Default</th>
+    <th>Description</th>
+  <tr/>
+  <tr>
+    <td>mode</td>
+    <td>'slideshow'<br/>'single'</td>
+    <td>'slideshow'</td>
+    <td>
+      In slideshow mode, there is next/previous links so user can navigate through your images [<a href='#example-1'>Check Example 1</a>]
+      but in single mode there isn't any way to go next or previous [<a href='#example-2'>Check Example 2</a>]
+    </td>
+  </tr>
+  <tr>
+    <td>bg</td>
+    <td>'color'<br/>'image'<br/>'pixelate'</td>
+    <td>'image'</td>
+    <td>
+      if you want a solid color for background, use 'color'<br/>
+      if you want image in background, use 'image'<br/>
+      and finally if you want pixelated version of image in background, use 'pixelate'
+    </td>
+  </tr>
+  <tr>
+    <td>color</td>
+    <td>'auto'<br>color hexacode</td>
+    <td>'auto'</td>
+    <td>
+      when 'bg' is 'color', you can set color option, if you set it 'auto', it will set background color based on image master color,
+      also you can set a color for background, by color hexacode, for example: <b><i>color: '#e53737'</i></b>
+    </td>
+  </tr>
+  <tr>
+    <td>theme</td>
+    <td>'dark'<br>'light'<br/>custom</td>
+    <td>'dark'</td>
+    <td>
+      There are two themes by default, 'dark' and 'light'<br/>
+      Also you can create your own theme, set name of theme and customize it by it's classname like this <b>lightmybox-theme-[THEME-NAME]</b> if your theme name be 'red' you should play with classname <b>lightmybox-theme-red</b>
+    </td>
+  </tr>
+  <tr>
+    <td>blur</td>
+    <td>Integer</td>
+    <td>5</td>
+    <td>
+        How much blur you want for background, you can use it when 'bg' is 'image'.<br/>
+        <b>put 0 to disable.</b><br/>
+        <i><b>supports just modern browsers.</b></i>
+    </td>
+  </tr>
+  <tr>
+    <td>duration</td>
+    <td>Integer</td>
+    <td>400</td>
+    <td>You can control speed of animations with this option.</td>
+  </tr>
+  <tr>
+    <td>height</td>
+    <td>'fit'<br>'fullscreen'</td>
+    <td>'fit'</td>
+    <td>If you want a fullscreen lightbox, set it 'fullscreen'.</td>
+  </tr>
+  <tr>
+    <td>nextPrevLinks</td>
+    <td>true<br>false</td>
+    <td>true</td>
+    <td>If you don't want to show next previous links, set it false.</td>
+  </tr>
+  <tr>
+    <td>keyboard</td>
+    <td>true<br>false</td>
+    <td>true</td>
+    <td>To disable navigation with keyboard, set it false.</td>
+  </tr>
+</table>
+
+<h2><a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h2>
+
+<div class='example'>
+  <h4><a name='example-1'>Example 1: Default Style</a></h4>
+  <ul>
+    <li><a class='lightmybox-1' href='../images/full/1.jpg'><img src='../images/thumbs/1.jpg'/></a></li>
+    <li><a class='lightmybox-1' href='../images/full/2.jpg'><img src='../images/thumbs/2.jpg'/></a></li>
+    <li><a class='lightmybox-1' href='../images/full/3.jpg'><img src='../images/thumbs/3.jpg'/></a></li>
+  </ul>
+  <pre>$(".lightmybox").lightmybox();</pre>
+</div>
+<div class='example'>
+  <h4><a name='example-2'>Example 2: Single Mode</a></h4>
+  <ul>
+    <li><a class='lightmybox-2' href='../images/full/1.jpg'><img src='../images/thumbs/1.jpg'/></a></li>
+    <li><a class='lightmybox-2' href='../images/full/2.jpg'><img src='../images/thumbs/2.jpg'/></a></li>
+    <li><a class='lightmybox-2' href='../images/full/3.jpg'><img src='../images/thumbs/3.jpg'/></a></li>
+  </ul>
+  <pre>$(".lightmybox").lightmybox({
+  mode: 'single'
+});</pre>
+</div>
+<div class='example'>
+  <h4><a name='example-3'>Example 3: Auto Color Background</a></h4>
+  <ul>
+    <li><a class='lightmybox-3' href='../images/full/1.jpg'><img src='../images/thumbs/1.jpg'/></a></li>
+    <li><a class='lightmybox-3' href='../images/full/2.jpg'><img src='../images/thumbs/2.jpg'/></a></li>
+    <li><a class='lightmybox-3' href='../images/full/3.jpg'><img src='../images/thumbs/3.jpg'/></a></li>
+  </ul>
+  <pre>$(".lightmybox").lightmybox({
+  bg: 'color',
+  color: 'auto'
+});</pre>
+</div>
+<div class='example'>
+  <h4><a name='example-4'>Example 4: Pixelate Image Background</a></h4>
+  <ul>
+    <li><a class='lightmybox-4' href='../images/full/1.jpg'><img src='../images/thumbs/1.jpg'/></a></li>
+    <li><a class='lightmybox-4' href='../images/full/2.jpg'><img src='../images/thumbs/2.jpg'/></a></li>
+    <li><a class='lightmybox-4' href='../images/full/3.jpg'><img src='../images/thumbs/3.jpg'/></a></li>
+  </ul>
+  <pre>$(".lightmybox").lightmybox({
+  bg: 'pixelate'
+});</pre>
+</div>
+<div class='example'>
+  <h4><a name='example-5'>Example 5: Fullscreen</a></h4>
+  <ul>
+    <li><a class='lightmybox-5' href='../images/full/1.jpg'><img src='../images/thumbs/1.jpg'/></a></li>
+    <li><a class='lightmybox-5' href='../images/full/2.jpg'><img src='../images/thumbs/2.jpg'/></a></li>
+    <li><a class='lightmybox-5' href='../images/full/3.jpg'><img src='../images/thumbs/3.jpg'/></a></li>
+  </ul>
+  <pre>$(".lightmybox").lightmybox({
+  height: 'fullscreen'
+});</pre>
+</div>
+
+<h2><a id="support" class="anchor" href="#support" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support</h2>
+
+<p>Having trouble with Focustip? need support? I'm here <a href="http://codecanyon.net/item/focustip/12787895/support" target='_blank'>http://codecanyon.net/item/focustip/12787895/support</a>.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/pooyarm" target='_blank'>pooyarm</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+    <script src="../libs/lightmybox/js/lightmybox.js"></script>
+    <script src="javascripts/focustip.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+
+        $('.lightmybox-1').lightmybox();
+        $('.lightmybox-2').lightmybox({
+          mode: 'single'
+        });
+        $('.lightmybox-3').lightmybox({
+          bg: 'color',
+          color: 'auto'
+        });
+        $('.lightmybox-4').lightmybox({
+          bg: 'pixelate'
+        });
+        $('.lightmybox-5').lightmybox({
+          height: 'fullscreen'
+        });
+
+      });
+    </script>
+    
+  </body>
+</html>

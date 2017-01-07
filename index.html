@@ -20,9 +20,8 @@
 	<link href='libs/font-awesome/css/font-awesome.min.css' type='text/css' rel='stylesheet' />
 
 	
-	<!-- Google webfonts [Oswald and Lato] you can change them as you want
+	<!-- Google webfonts [Oswald and Lato] you can change them as you want -->
 	<link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700|Open+Sans:400italic,600italic,700italic,400,600,700' rel='stylesheet' type='text/css' />
-	 -->
 		
 </head>
 <body>
@@ -109,7 +108,17 @@
 
 						<pre>$(".lightmybox").lightmybox({
 	bg: 'color',
-	color: 'auto'
+	color: 'auto',
+	callbacks: {
+		beforeShow: 	function() { console.log('beforeShow'); },
+		afterShow: 	function() { console.log('afterShow'); },
+		beforeNext: 	function() { console.log('beforeNext'); },
+		afterNext: 	function() { console.log('afterNext'); },
+		beforePrevious: function() { console.log('beforePrevious'); },
+		afterPrevious: 	function() { console.log('afterPrevious'); },
+		beforeClose: 	function() { console.log('beforeClose'); },
+		afterClose: 	function() { console.log('afterClose'); },
+	}
 });</pre>
 
 						<div class='clearfix'></div>

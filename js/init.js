@@ -35,7 +35,17 @@ $(document).ready(function(){
 
 	$(".lightmybox2").lightmybox({
 		bg: 'color',
-		color: 'auto'
+		color: 'auto',
+		callbacks: {
+			beforeShow: function() { console.log('beforeShow'); },
+			afterShow: 	function() { console.log('afterShow'); },
+			beforeNext: function() { console.log('beforeNext'); },
+			afterNext: 	function() { console.log('afterNext'); },
+			beforePrevious: function() { console.log('beforePrevious'); },
+			afterPrevious: 	function() { console.log('afterPrevious'); },
+			beforeClose: function() { console.log('beforeClose'); },
+			afterClose: 	function() { console.log('afterClose'); },
+		}
 	});
 
 	$(".lightmybox3").lightmybox({

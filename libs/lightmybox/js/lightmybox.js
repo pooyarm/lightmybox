@@ -33,7 +33,17 @@
 			duration: 400,
 			height: 'fit', // fit | fullscreen
 			nextPrevLinks: true, // true | false
-			keyboard: true // true | false
+			keyboard: true, // true | false
+			callbacks: {
+				beforeShow: 	function(){},
+				afterShow: 		function(){},
+				beforeNext: 	function(){},
+				afterNext: 		function(){},
+				beforePrevious: function(){},
+				afterPrevious: 	function(){},
+				beforeClose: 	function(){},
+				afterClose: 	function(){}
+			}
 		}, _options );
 
 		this.initElements = function(){
@@ -88,23 +98,25 @@
 		};
 
 		this.bindEvents = function(){
-			wrapper.on('click','.lightmybox-bg',function(){ that.close(); });
+			wrapper.on('click','.lightmybox-bg',function(){ if(that.isOpen()) { that.close(); } });
 
-			wrapper.on('click','.lightmybox-close',function(){ that.close(); });
+			wrapper.on('click','.lightmybox-close',function(){ if(that.isOpen()) { that.close(); } });
 
 			loading.click(function(){
-				that.close();
+				if(that.isOpen()) { 
+					that.close();
+				}
 			});
 
-			wrapper.find('.lightmybox-next').click(function(){ that.goNext(); });
-			wrapper.find('.lightmybox-prev').click(function(){ that.goPrev(); });
+			wrapper.find('.lightmybox-next').click(function(){ if(that.isOpen()) { that.goNext(); } });
+			wrapper.find('.lightmybox-prev').click(function(){ if(that.isOpen()) { that.goPrev(); } });
 
 			wrapper.on('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend','ul.lightmybox-images li',function(e) {
 				$(this).trigger('cssAnimated');
 			});
 
 			if(this.options.keyboard) {
-				$(document).on('keydown.lightmybox', function(e){ that.keyboardHandler(e); })
+				$(document).on('keydown.lightmybox', function(e){ if(that.isOpen()) { that.keyboardHandler(e); } })
 			} else {
 				$(document).off('keydown.lightmybox');
 			}
@@ -112,7 +124,7 @@
 			var resizeId = false;
 			$(window).on('resize.lightmybox',function(){
 				clearTimeout(resizeId);
-				resizeId = setTimeout(function(){ that.setHeight(); }, 10);
+				resizeId = setTimeout(function(){ if(that.isOpen()) { that.setHeight(); } }, 10);
 			});
 		};
 
@@ -206,7 +218,7 @@
 
 		this.animateWrapperIn = function(){
 			$("body").addClass('lightmybox-open');
-			return wrapper.fadeIn(this.options.duration / 2);
+			return wrapper.fadeIn(this.options.duration);
 		};
 
 		this.resetLis = function(){
@@ -331,9 +343,12 @@
 
 		this.start = function(){
 			var that = this;
+			this.callback('beforeShow');
 			this.beautify();
 			that.setSrc();
-			this.animateWrapperIn();
+			$.when(this.animateWrapperIn()).done(function(){
+				that.callback('afterShow');
+			});
 			this.nextPrevLinks();
 			if(this.options.mode == 'slideshow'){
 				this.initNextPrevs();
@@ -376,6 +391,8 @@
 			var image = this.nextImage();
 			if(!image) return false;
 
+			this.callback('beforeNext');
+
 			var dff1 = new $.Deferred();
 			this.activeLi().attr('class','lightmybox-item-prev').one('cssAnimated',function(){
 				dff1.resolve();
@@ -394,6 +411,7 @@
 					activeIndex = image.index;
 					that.initNextPrevs();
 					lockBtns = false;
+					that.callback('afterNext');
 				},1);
 			});
 		};
@@ -426,6 +444,8 @@
 		this.doGoPrev = function(){
 			var image = this.prevImage();
 			if(!image) return false;
+
+			this.callback('beforePrevious');
 			
 			var dff1 = new $.Deferred();
 			this.activeLi().attr('class','lightmybox-item-next').one('cssAnimated',function(){
@@ -445,13 +465,17 @@
 					activeIndex = image.index;
 					that.initNextPrevs();
 					lockBtns = false;
+					that.callback('afterPrevious');
 				},1);
 			});
 		};
 
 		this.close = function(){
-			wrapper.fadeOut(this.options.duration / 2);
-			loading.fadeOut(this.options.duration / 2);
+			this.callback('beforeClose');
+			wrapper.fadeOut(this.options.duration, function(){
+				that.callback('afterClose');
+			});
+			loading.fadeOut(this.options.duration);
 			$("body").removeClass('lightmybox-open');
 		};
 
@@ -499,6 +523,16 @@
 				return this.prevImage(prevImage);
 			}
 			return prevImage;
+		};
+
+		this.callback = function(key) {
+			if(typeof this.options.callbacks[key] == 'function') {
+				this.options.callbacks[key].call();
+			}
+		};
+
+		this.isOpen = function() {
+			return wrapper.is(":visible") && wrapper.hasClass(this.uniqueClass);
 		};
 
 		this.keyboardHandler = function(e){
