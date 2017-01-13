@@ -267,13 +267,13 @@
 				offset += img_element.css('padding-top').replace('px','') / 1;
 				offset += img_element.css('padding-bottom').replace('px','') / 1;
 
-				var maxHeight = $(window).height() - offset;
-				var maxWidth = $(window).width() * (parseInt(img_element.css('max-width').replace('%','')) / 100, 10);
+				var maxHeight 	= $(window).height() - offset;
+				var maxWidth 	= $(window).width() * (parseFloat(img_element.css('max-width').replace('%','')) / 100);
 
-				var ratio = image.width / image.height;
-				var height = (maxHeight > image.height)?image.height:maxHeight;
-				var width = (maxWidth > image.width)?image.width:maxWidth;
-				var z = img_element.css('max-width').replace('%','');
+				var ratio 	= image.width / image.height;
+				var height 	= (maxHeight > image.height)?image.height:maxHeight;
+				var width 	= (maxWidth > image.width)?image.width:maxWidth;
+				var z 		= img_element.css('max-width').replace('%','');
 				
 				var tempHeight = width / ratio;
 				if (tempHeight > height) {
@@ -287,9 +287,9 @@
 				img_element.css('margin-top',marginTop + 'px');
 
 				li.find(".lightmybox-image img").css({
-					'max-height': maxHeight,
-					'width': width + 'px',
-					'height': height + 'px'
+					'max-height': 	maxHeight,
+					'width': 		width + 'px',
+					'height': 		height + 'px'
 				});
 			}
 			else if(this.options.height == 'fullscreen'){
