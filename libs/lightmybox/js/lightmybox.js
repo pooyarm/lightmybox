@@ -102,14 +102,12 @@
 
 			wrapper.on('click','.lightmybox-close',function(){ if(that.isOpen()) { that.close(); } });
 
-			loading.click(function(){
-				if(that.isOpen()) { 
-					that.close();
-				}
+			loading.on('click',function(){
+				that.close();
 			});
 
-			wrapper.find('.lightmybox-next').click(function(){ if(that.isOpen()) { that.goNext(); } });
-			wrapper.find('.lightmybox-prev').click(function(){ if(that.isOpen()) { that.goPrev(); } });
+			wrapper.on('click','.lightmybox-next', function(){ if(that.isOpen()) { that.goNext(); } });
+			wrapper.on('click','.lightmybox-prev', function(){ if(that.isOpen()) { that.goPrev(); } });
 
 			wrapper.on('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend','ul.lightmybox-images li',function(e) {
 				$(this).trigger('cssAnimated');
@@ -270,7 +268,7 @@
 				offset += img_element.css('padding-bottom').replace('px','') / 1;
 
 				var maxHeight = $(window).height() - offset;
-				var maxWidth = $(window).width() * (parseInt(img_element.css('max-width').replace('%','')) / 100);
+				var maxWidth = $(window).width() * (parseInt(img_element.css('max-width').replace('%','')) / 100, 10);
 
 				var ratio = image.width / image.height;
 				var height = (maxHeight > image.height)?image.height:maxHeight;
@@ -1087,7 +1085,7 @@
 			if($(this).data('lightmybox-index') > -1) return true;
 			var index = that.addImage($(this));
 			$(this).data('lightmybox-index',index);
-			$(this).bind('click',function(e){
+			$(this).on('click',function(e){
 				e.preventDefault();
 				that.init($(this));
 			});
