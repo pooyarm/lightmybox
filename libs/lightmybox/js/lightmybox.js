@@ -122,7 +122,13 @@
 			var resizeId = false;
 			$(window).on('resize.lightmybox',function(){
 				clearTimeout(resizeId);
-				resizeId = setTimeout(function(){ if(that.isOpen()) { that.setHeight(); } }, 10);
+				resizeId = setTimeout(function(){
+					if(that.isOpen()) {
+						that.setHeight();
+						that.setHeight(that.prevLi(), that.prevImage());
+						that.setHeight(that.nextLi(), that.nextImage());
+					}
+				}, 10);
 			});
 		};
 
